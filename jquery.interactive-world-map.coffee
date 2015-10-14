@@ -1,6 +1,6 @@
 $ ->
 
-  $.fn.worldMap = (options) ->
+  $.fn.interactiveWorldMap = (options) ->
     event.preventDefault()
     marginCountryPopupForTop = $.fn.worldMap.defaults.marginCountryPopupForTop
     marginCountryPopupForLeft = $.fn.worldMap.defaults.marginCountryPopupForLeft
