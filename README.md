@@ -1,7 +1,7 @@
 ## Vector Map customizable by JSON
 Dependency: [Jvectormap](http://jvectormap.com/)
 
-Main sources: data.js and the library. It includes the **.coffee** version of **data.js**
+Main sources: jquery.interactive-world-map.js and the library. It includes the **.coffee** version of **jquery.interactive-world-map.js**
 
 The vector map show a modal with the information of the country clicked. The data you should send by Json for the map configuration.
 
@@ -25,5 +25,5 @@ Example:
                 }
             };
 ```
-For add more properties for the Country modal you have to add it in the onRegionClick at data.js and in the ``` $('#world-map').prepend() ``` the dom element.
+For add more properties for the Country modal you have to add it in the onRegionClick at jquery.interactive-world-map.js and in the ``` $('#world-map').prepend() ``` the dom element.
 After that in the json you gonna be able to send it:).

@@ -1,9 +1,9 @@
 $(function(){
 
-    $.fn.worldMap = function(options) {
+    $.fn.interactiveWorldMap = function(options) {
         event.preventDefault();
-        var marginCountryPopupForTop = $.fn.worldMap.defaults.marginCountryPopupForTop;
-        var marginCountryPopupForLeft = $.fn.worldMap.defaults.marginCountryPopupForLeft;
+        var marginCountryPopupForTop  = $.fn.interactiveWorldMap.defaults.marginCountryPopupForTop;
+        var marginCountryPopupForLeft = $.fn.interactiveWorldMap.defaults.marginCountryPopupForLeft;
         var dataCountries = {};
         if(options) {
             dataCountries                           = options['countries'];
@@ -19,8 +19,8 @@ $(function(){
             }
 
             if(options['colors']) {
-                $.fn.worldMap.defaults.highlighted  = options['colors']['highlighted'];
-                $.fn.worldMap.defaults.hover        = options['colors']['hover'];
+                $.fn.interactiveWorldMap.defaults.highlighted  = options['colors']['highlighted'];
+                $.fn.interactiveWorldMap.defaults.hover        = options['colors']['hover'];
             }
 
         } else {
@@ -39,10 +39,10 @@ $(function(){
             }
 
             if($data.colorhover){
-                $.fn.worldMap.defaults.hover       = $data.colorhover
+                $.fn.interactiveWorldMap.defaults.hover       = $data.colorhover
             }
             if($data.colorhighlighted){
-                $.fn.worldMap.defaults.highlighted = $data.colorhighlighted;
+                $.fn.interactiveWorldMap.defaults.highlighted = $data.colorhighlighted;
             }
         }
 
@@ -120,8 +120,8 @@ $(function(){
 
         });
         //Configurations for the map. Dotted Style and popup prepended
-        colorHighlighted = $.fn.worldMap.defaults.highlighted;
-        colorHover       = $.fn.worldMap.defaults.hover;
+        colorHighlighted = $.fn.interactiveWorldMap.defaults.highlighted;
+        colorHover       = $.fn.interactiveWorldMap.defaults.hover;
         pattern  = '<pattern id="dotsGeneral" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:#cccccc;"></circle></pattern>';
         pattern2 = '<pattern id="dotsHighlighted" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + colorHighlighted + '"></circle></pattern>';
         patternHover = '<pattern id="dotsHover" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + colorHover+ '"></circle></pattern>';
@@ -130,7 +130,7 @@ $(function(){
     };
 
 
-    $.fn.worldMap.defaults = {
+    $.fn.interactiveWorldMap.defaults = {
         hover : "#FF0000",
         highlighted: "#848484",
         marginCountryPopupForTop: 100,
