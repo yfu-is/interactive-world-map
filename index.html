@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jVectorMap demo</title>
+    <script src="jquery.js"></script>
+
+    <link rel="stylesheet" href="jquery-jvectormap-2.0.4.css" type="text/css" media="screen"/>
+
+
+    <!-- vector maps librarys -->
+    <script src="jquery-jvectormap-2.0.4.min.js"></script>
+    <script src="jquery-jvectormap-world-mill-en.js"></script>
+    <!-- end vector map -->
+    <script src="data.js"></script>
+
+
+    <script>
+        $(function(){
+            var options = { 'countries': {
+                "AT":
+                {"name": "Austria", "main_image": "src", "description": "brief description"}
+                ,
+                "AR":
+                {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
+                ,
+                "BR":
+                {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
+            },
+                'margins': {
+                    "marginCountryPopupForTop"  : 100,
+                    "marginCountryPopupForLeft" : 60
+                },
+                'colors': {
+                    "hover" : "red",
+                    "highlighted": "yellow"
+                }
+            };
+            $('#world-map').worldMap()
+        });
+    </script>
+
+</head>
+<body>
+<div id="world-map" data-colorHighlighted="red" data-colorHover="blue" data-countries='{ "countries": {
+"AT":
+{"name": "Austria", "main_image": "src", "description": "brief description"}
+,
+"AR":
+{"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
+,
+"BR":
+{"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
+}
+}' ></div>
+</body>
+</html>
