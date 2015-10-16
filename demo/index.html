@@ -30,17 +30,17 @@
                     "marginCountryPopupForLeft" : 60
                 },
                 'colors': {
-                    "hover" : "red",
-                    "highlighted": "yellow"
+                    "hovercoloroption" : "orange",
+                    "highlightedcoloroption": "yellow"
                 }
             };
-            $('#world-map').interactiveWorldMap()
+            $('#world-map').interactiveWorldMap(options)
         });
     </script>
 
 </head>
 <body>
-<div id="world-map" data-colorHighlighted="red" data-colorHover="blue" data-countries='{ "countries": {
+<div id="world-map" data-highlightedcoloroption="red" data-hoverColorOption="blue" data-countries='{ "countries": {
 "AT":
 {"name": "Austria", "main_image": "src", "description": "brief description"}
 ,

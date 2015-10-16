@@ -1,20 +1,19 @@
 ;$(function( $, window, document, undefined) {
 
     var pluginName = "interactiveWorldMap";
-    var marginCountryPopupForLeft;
-    var marginCountryPopupForTop;
-    var dataCountries = {};
-    var countriesFill = {};
-    var colorHighlighted;
-    var patternHover;
-    var colorHover;
-    var pattern2;
-    var pattern;
-    var margins;
+    var marginCountryPopupForLeft;          //distance between the popup launched when you click a country and the left of the browser
+    var marginCountryPopupForTop;           //distance between the popup launched when you click a country and the top  of the browser
+    var dataCountries = {};                 //Hold the countries information sent by parameters
+    var countriesFill = {};                 //Hold the countries code that must be Highlighted for be a YFU Country
+    var highlightColor;                     //The #color used for highlighted  the countries
+    var hoverPattern;                       //The svg pattern (html code) that uses the hover colors over the YFU countries and make it dotted.
+    var hoverColor;                         //The hover color for the YFU countries. It's used by patternHover.
+    var yfuCountriesHighlighted;            //The pattern that makes the yfu countries dotted and highlighted
+    var generalDottedPatternStyle;          //The general dotted style for all the countries
 
     var defaults = {
-        hover : "#FF0000",
-        highlighted: "#848484",
+        hovercoloroption : "#FF0000",
+        highlightedcoloroption: "#848484",
         marginCountryPopupForTop: 100,
         marginCountryPopupForLeft: 60
     };
@@ -36,61 +35,33 @@
                 marginCountryPopupForLeft = $.fn[this._name].defaults.marginCountryPopupForLeft;
 
                 //override defaults
-                setOptions(this.element, this._options);
+                setOptions(this.element, this._options, this._defaults);
 
                 //Configurations for the map. Dotted Style and popup prepended
-                colorHighlighted = $.fn[pluginName].defaults.highlighted;
-                colorHover       = $.fn[pluginName].defaults.hover;
-                pattern          = '<pattern id="dotsGeneral" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:#cccccc;"></circle></pattern>';
-                pattern2         = '<pattern id="dotsHighlighted" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + colorHighlighted + '"></circle></pattern>';
-                patternHover     = '<pattern id="dotsHover" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + colorHover+ '"></circle></pattern>';
+                highlightColor                     = $.fn[pluginName].defaults.highlightedcoloroption;
+                hoverColor                         = $.fn[pluginName].defaults.hovercoloroption;
+                generalDottedPatternStyle          = '<pattern id="dotsGeneral" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:#cccccc;"></circle></pattern>';
+                yfuCountriesHighlighted            = '<pattern id="dotsHighlighted" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + highlightColor + '"></circle></pattern>';
+                hoverPattern                       = '<pattern id="dotsHover" width="5" height="5" patternUnits="userSpaceOnUse"><circle x="1" y="1" cx="3" cy="3" r="3" style="stroke:none; fill:' + hoverColor+ '"></circle></pattern>';
                 $(this.element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
             }
         }
     );
 
 
-    function setOptions(element, options) {
+    function setOptions(element, options, defaults) {
+        $data = $(element).data();                                                      //Configuration coming from the data-* attributes
+        final = $.extend({}, defaults, $data);
+
         if(options) {
-            dataCountries                              = options['countries'];
-            //Location of the popup when its launched
-            margins                                    = options['margins'];
-
-            if(margins && typeof(margins['marginCountryPopupForTop']) != "undefined" ) {
-                marginCountryPopupForTop               = margins['marginCountryPopupForTop'];
-            }
-
-            if(margins && typeof(margins['marginCountryPopupForLeft']) != 'undefined') {
-                marginCountryPopupForLeft              = margins['marginCountryPopupForLeft'];
-            }
-
-            if(options['colors']) {
-                $.fn[pluginName].defaults.highlighted  = options['colors']['highlighted'];
-                $.fn[pluginName].defaults.hover        = options['colors']['hover'];
-            }
-
-        } else {
-
-            dataCountries = $(element).data('countries');
-            dataCountries = dataCountries['countries'];
-
-            $data = $(element).data();
-
-            if($data.margincountrypopupfortop) {
-                marginCountryPopupForTop            = $data.margincountrypopupfortop;
-            }
-
-            if($data.margincountrypopupforleft) {
-                marginCountryPopupForLeft          = $data.margincountrypopupforleft;
-            }
-
-            if($data.colorhover){
-                $.fn[pluginName].defaults.hover       = $data.colorhover
-            }
-            if($data.colorhighlighted){
-                $.fn[pluginName].defaults.highlighted = $data.colorhighlighted;
-            }
+            final = $.extend(final, options, options['colors'], options['margins']);   //Options coming from hash
         }
+
+        marginCountryPopupForTop                                           = final['marginCountryPopupForTop'];
+        marginCountryPopupForLeft                                          = final['marginCountryPopupForTop'];
+        $.fn[pluginName].defaults.highlightedcoloroption                   = final['highlightedcoloroption'];
+        $.fn[pluginName].defaults.hovercoloroption                         = final['hovercoloroption'];
+        dataCountries                                                      = final['countries'];
     }
 
     $.fn[ pluginName ] = function(options) {
@@ -171,7 +142,7 @@
 
                 });
                 //Apply the svg patterns to the DOM
-                $('defs').html(pattern+pattern2+patternHover);
+                $('defs').html(generalDottedPatternStyle+yfuCountriesHighlighted+hoverPattern);
             }
         );
     };
