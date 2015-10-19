@@ -1,35 +1,38 @@
 ;$(function( $, window, document, undefined) {
 
     var pluginName = "interactiveWorldMap";
-    var generalColor = '#cccccc';
-    var marginCountryPopupForLeft;          //distance between the popup launched when you click a country and the left of the browser
-    var marginCountryPopupForTop;           //distance between the popup launched when you click a country and the top  of the browser
+    var settings;
     var dataCountries = {};                 //Hold the countries information sent by parameters
     var countriesFill = {};                 //Hold the countries code that must be Highlighted for be a YFU Country
-    var highlightColor;                     //The #color used for highlighted  the countries
     var hoverPattern;                       //The svg pattern (html code) that uses the hover colors over the YFU countries and make it dotted.
-    var hoverColor;                         //The hover color for the YFU countries. It's used by patternHover.
     var yfuCountriesHighlighted;            //The pattern that makes the yfu countries dotted and highlighted
     var generalDottedPatternStyle;          //The general dotted style for all the countries
-    /*  Holds the patterns sizes of the map */
-    var _cx;
-    var _cy;
-    var _r;
-    var _x;
-    var _y;
 
     var defaults = {
-        hovercoloroption : "#FF0000",
-        highlightedcoloroption: "#848484",
-        marginCountryPopupForTop: 100,
-        marginCountryPopupForLeft: 60
+        colors: {
+            general: '#cccccc',
+            hover: 'red',
+            highlighted: 'green'
+        },
+        popup: {
+            margins: {top: 100, left: 60}
+        },
+        svg: {
+           pattern: {
+                circle: {
+                    x: 1, y: 1, cx:3, cy: 3, r: 3
+                },
+               size: {
+                   width:  "5",
+                   heigth: "5"
+               }
+           }
+        }
     };
 
 
     function interactiveWorldMap(element, options) {
         this.element    = element;
-        this._defaults  = defaults;
-        this._name      = pluginName;
         this._options   = options;
         this.init();
     }
@@ -37,68 +40,37 @@
 
     $.extend(interactiveWorldMap.prototype, {
             init: function () {
-
-                $.fn[this._name].defaults = this._defaults;
-                marginCountryPopupForTop  = $.fn[this._name].defaults.marginCountryPopupForTop;
-                marginCountryPopupForLeft = $.fn[this._name].defaults.marginCountryPopupForLeft;
-
-                //override defaults
-                setOptions(this.element, this._options, this._defaults);
-
-                //Configurations for the map. Dotted Style and popup prepended
-                configMapStyle(this.element);
-
+                settings   = $.extend(defaults, $(this.element).data(), this._options);
+                if ($.isPlainObject(settings.countries)) {
+                    dataCountries = settings.countries;
+                }else {
+                    dataCountries = jQuery.parseJSON(settings.countries);
+                }
+                configMapStyle(this.element);                //Configurations for the map. Dotted Style and popup prepended
             }
         }
     );
 
     function configMapStyle(element) {
-        setPatternAttributes(1, 1, 3, 3, 3);
-        generalDottedPatternStyle = createPatternSvg("dotsGeneral",     generalColor);
-        yfuCountriesHighlighted   = createPatternSvg("dotsHighlighted", highlightColor);
-        hoverPattern              = createPatternSvg("dotsHover",       hoverColor);
+        generalDottedPatternStyle = createPatternSvg("dotsGeneral",     settings.colors.general);
+        yfuCountriesHighlighted   = createPatternSvg("dotsHighlighted", settings.colors.highlighted);
+        hoverPattern              = createPatternSvg("dotsHover",       settings.colors.hover);
         prependModalContainer(element);
 
     }
 
-    function setPatternAttributes(x, y, cx, cy, r) {
-        _x  = x;
-        _y  = y;
-        _cx = cx;
-        _cy = cy;
-        _r  = r;
-    }
-
     function createPatternSvg(id, color) {
-        return '<pattern id="' + id + '" width="5" height="5"     patternUnits="userSpaceOnUse"><circle x="' + _x + '" y="' + _y + '" cx="' + _cx + '" cy="' + _cy + '" r="' + _r + '" style="stroke:none; fill:' + color + '"></circle></pattern>';
+        return '<pattern id="' + id + '" width="' + settings.svg.pattern.size.width + '" height="' + settings.svg.pattern.size.heigth + '"     patternUnits="userSpaceOnUse"><circle x="' + settings.svg.pattern.circle.x + '" y="' + settings.svg.pattern.circle.y + '" cx="' + settings.svg.pattern.circle.cx + '" cy="' + settings.svg.pattern.circle.cy + '" r="' + settings.svg.pattern.circle.r + '" style="stroke:none; fill:' + color + '"></circle></pattern>';
     }
 
     function prependModalContainer(element) {
         $(element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
     }
 
-    function setOptions(element, options, defaults) {
-        $data = $(element).data();                                                      //Configuration coming from the data-* attributes
-        final = $.extend({}, defaults, $data);
-
-        if(options) {
-            final = $.extend(final, options, options['colors'], options['margins']);   //Options coming from hash
-        }
-
-        marginCountryPopupForTop                                           = final['marginCountryPopupForTop'];
-        marginCountryPopupForLeft                                          = final['marginCountryPopupForTop'];
-        $.fn[pluginName].defaults.highlightedcoloroption                   = final['highlightedcoloroption'];
-        $.fn[pluginName].defaults.hovercoloroption                         = final['hovercoloroption'];
-        highlightColor                                                     = $.fn[pluginName].defaults.highlightedcoloroption;
-        hoverColor                                                         = $.fn[pluginName].defaults.hovercoloroption;
-        dataCountries                                                      = final['countries'];
-    }
-
     $.fn[ pluginName ] = function(options) {
         return this.each(function() {
                 //Call the constructor
                 new interactiveWorldMap(this, options);
-
                 $.each(dataCountries, function(index, value) {
                         countriesFill[index] = 'url(#dotsHighlighted)';
                     }
@@ -155,8 +127,8 @@
 
                         $(".main-modal, #modal-background").toggleClass("active");
                         // Calculate the distance between the country and the top for show with the correctly space the popup
-                        distanceXtop = $offset.top  - marginCountryPopupForTop;
-                        distanceLeft = $offset.left + marginCountryPopupForLeft;
+                        distanceXtop = $offset.top  - settings.popup.margins.top;
+                        distanceLeft = $offset.left + settings.popup.margins.left;
 
                         var first           = dataCountries[code];
                         countryName         = first['name'];

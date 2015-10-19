@@ -15,32 +15,32 @@
 
     <script>
         $(function(){
-            var options = { 'countries': {
-                "AT":
-                {"name": "Austria", "main_image": "src", "description": "brief description"}
-                ,
-                "AR":
-                {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
-                ,
-                "BR":
-                {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
-            },
-                'margins': {
-                    "marginCountryPopupForTop"  : 100,
-                    "marginCountryPopupForLeft" : 60
+            var options = {
+                "countries": {
+                    "AT":
+                    {"name": "Austria", "main_image": "src", "description": "brief description"}
+                    ,
+                    "AR":
+                    {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
+                    ,
+                    "BR":
+                    {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
+                 },
+                "popup": {
+                    "margins" : {"top": 50, "left": 20}
                 },
-                'colors': {
-                    "hovercoloroption" : "orange",
-                    "highlightedcoloroption": "yellow"
+                "colors": {
+                    "hover" : "orange",
+                    "highlighted": "yellow"
                 }
             };
-            $('#world-map').interactiveWorldMap(options)
+            $('#world-map').interactiveWorldMap()
         });
     </script>
 
 </head>
 <body>
-<div id="world-map" data-highlightedcoloroption="red" data-hoverColorOption="blue" data-countries='{ "countries": {
+<div id="world-map" data-colors = '{"hover": "red", "highlighted":  "blue"   }'  data-countries=' {
 "AT":
 {"name": "Austria", "main_image": "src", "description": "brief description"}
 ,
@@ -50,6 +50,6 @@
 "BR":
 {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
 }
-}' ></div>
+' ></div>
 </body>
 </html>
