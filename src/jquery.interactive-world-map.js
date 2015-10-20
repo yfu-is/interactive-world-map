@@ -29,14 +29,15 @@
     };
 
 
-    function interactiveWorldMap(element, options) {
+    function InteractiveWorldMap(element, options) {
+        console.log(element );
         this.element    = element;
         this._options   = options;
         this.init();
     }
 
 
-    $.extend(interactiveWorldMap.prototype, {
+    $.extend(InteractiveWorldMap.prototype, {
             init: function () {
                 settings   = $.extend(defaults, $(this.element).data(), this._options);
                 if ($.isPlainObject(settings.countries)) {
@@ -50,6 +51,7 @@
     );
 
     function configMapStyle(element) {
+        console.log(this.element);
         patterns = {
             highlighted: createPatternSvg("dotsHighlighted", settings.colors.highlighted),
             general:     createPatternSvg("dotsGeneral",     settings.colors.general),
@@ -71,7 +73,7 @@
     $.fn[ pluginName ] = function(options) {
         return this.each(function() {
                 //Call the constructor
-                new interactiveWorldMap(this, options);
+                new InteractiveWorldMap(this, options);
                 $.each(dataCountries, function(index, value) {
                         countriesFill[index] = 'url(#dotsHighlighted)';
                     }
