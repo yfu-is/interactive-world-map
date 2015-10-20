@@ -30,7 +30,6 @@
 
 
     function InteractiveWorldMap(element, options) {
-        console.log(element );
         this.element    = element;
         this._options   = options;
         this.init();
@@ -45,35 +44,33 @@
                 }else {
                     dataCountries = jQuery.parseJSON(settings.countries);
                 }
-                configMapStyle(this.element);                //Configurations for the map. Dotted Style and popup prepended
+                this.mapStyle();
+            },
+            mapStyle: function() {
+
+                patterns = {
+                    highlighted: createPatternSvg("dotsHighlighted", settings.colors.highlighted),
+                    general:     createPatternSvg("dotsGeneral",     settings.colors.general),
+                    hover:       createPatternSvg("dotsHover",       settings.colors.hover)
+                };
+
+                this.prependModalContainer();
+            },
+            prependModalContainer: function() {
+                $(this.element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
+
             }
         }
     );
-
-    function configMapStyle(element) {
-        console.log(this.element);
-        patterns = {
-            highlighted: createPatternSvg("dotsHighlighted", settings.colors.highlighted),
-            general:     createPatternSvg("dotsGeneral",     settings.colors.general),
-            hover:       createPatternSvg("dotsHover",       settings.colors.hover)
-        };
-
-        prependModalContainer(element);
-
-    }
 
     function createPatternSvg(id, color) {
         return '<pattern id="' + id + '" width="' + settings.svg.pattern.size.width + '" height="' + settings.svg.pattern.size.heigth + '"     patternUnits="userSpaceOnUse"><circle x="' + settings.svg.pattern.circle.x + '" y="' + settings.svg.pattern.circle.y + '" cx="' + settings.svg.pattern.circle.cx + '" cy="' + settings.svg.pattern.circle.cy + '" r="' + settings.svg.pattern.circle.r + '" style="stroke:none; fill:' + color + '"></circle></pattern>';
     }
 
-    function prependModalContainer(element) {
-        $(element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
-    }
-
     $.fn[ pluginName ] = function(options) {
         return this.each(function() {
-                //Call the constructor
-                new InteractiveWorldMap(this, options);
+                new InteractiveWorldMap(this, options);                //Call the constructor
+
                 $.each(dataCountries, function(index, value) {
                         countriesFill[index] = 'url(#dotsHighlighted)';
                     }
