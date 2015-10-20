@@ -4,9 +4,7 @@
     var settings;
     var dataCountries = {};                 //Hold the countries information sent by parameters
     var countriesFill = {};                 //Hold the countries code that must be Highlighted for be a YFU Country
-    var hoverPattern;                       //The svg pattern (html code) that uses the hover colors over the YFU countries and make it dotted.
-    var yfuCountriesHighlighted;            //The pattern that makes the yfu countries dotted and highlighted
-    var generalDottedPatternStyle;          //The general dotted style for all the countries
+    var patterns      = {};                 //Hold all the Svg patterns
 
     var defaults = {
         colors: {
@@ -52,9 +50,12 @@
     );
 
     function configMapStyle(element) {
-        generalDottedPatternStyle = createPatternSvg("dotsGeneral",     settings.colors.general);
-        yfuCountriesHighlighted   = createPatternSvg("dotsHighlighted", settings.colors.highlighted);
-        hoverPattern              = createPatternSvg("dotsHover",       settings.colors.hover);
+        patterns = {
+            highlighted: createPatternSvg("dotsHighlighted", settings.colors.highlighted),
+            general:     createPatternSvg("dotsGeneral",     settings.colors.general),
+            hover:       createPatternSvg("dotsHover",       settings.colors.hover)
+        };
+
         prependModalContainer(element);
 
     }
@@ -144,7 +145,7 @@
 
                 });
                 //Apply the svg patterns to the DOM
-                $('defs').html(generalDottedPatternStyle+yfuCountriesHighlighted+hoverPattern);
+                $('defs').html(patterns.general + patterns.highlighted + patterns.hover);
             }
         );
     };
