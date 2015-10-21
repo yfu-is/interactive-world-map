@@ -25,6 +25,16 @@
                    heigth: "5"
                }
            }
+        },
+        classes: {
+            popup: {
+                modal:          'main-modal',
+                container:      'container',
+                containerImage: 'container-image',
+                image:          'main-image',
+                description:    'description',
+                title:          'title'
+            }
         }
     };
 
@@ -39,7 +49,7 @@
     $.extend(InteractiveWorldMap.prototype, {
             init: function () {
                 settings   = $.extend(defaults, $(this.element).data(), this._options);
-                if ($.isPlainObject(settings.countries)) {
+                if ($.isPlainObject(settings.countries)) { // Check if comes by js object or data-* parameter
                     dataCountries = settings.countries;
                 }else {
                     dataCountries = jQuery.parseJSON(settings.countries);
@@ -57,7 +67,7 @@
                 this.prependModalContainer();
             },
             prependModalContainer: function() {
-                $(this.element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
+                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + '" alt=""></div><p><h2></h2><div class="' + settings.classes.popup.description + '"></div></p></div></div>');
 
             }
         }
@@ -121,25 +131,16 @@
                         if(!dataCountries[code]) {
                             return;
                         }
-                        var $this = $(this);
-                        $element   = $('g', $this).find("[data-code='" + code  + "']");
-                        $offset    = $element.offset();
 
-                        $(".main-modal, #modal-background").toggleClass("active");
-                        // Calculate the distance between the country and the top for show with the correctly space the popup
-                        distanceXtop = $offset.top  - settings.popup.margins.top;
-                        distanceLeft = $offset.left + settings.popup.margins.left;
+                        optionsPopup = {
+                            code:      code,
+                            margins:   defaults.popup.margins,
+                            country: dataCountries[code],
+                            element:  $(this),
+                            classes: defaults.classes.popup
+                        };
 
-                        var first           = dataCountries[code];
-                        countryName         = first['name'];
-                        description         = first['description'];
-                        mainImage           = first['main_image'];
-
-                        $(".main-modal" ).css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
-                        $(".main-modal .description").text(description);
-                        $(".main-modal .title").text(countryName);
-                        $(".main-image").attr('src', mainImage);
-
+                        new $.fn.interactiveWorldMapCountryPopup(optionsPopup);
                     }
 
                 });
