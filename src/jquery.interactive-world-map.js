@@ -44,17 +44,17 @@
                 }else {
                     dataCountries = jQuery.parseJSON(settings.countries);
                 }
-                this.mapStyle();
+                this.createPatterns();
+                this.prependModalContainer();
             },
-            mapStyle: function() {
+            createPatterns: function() {
 
                 patterns = {
-                    highlighted: createPatternSvg("dotsHighlighted", settings.colors.highlighted),
-                    general:     createPatternSvg("dotsGeneral",     settings.colors.general),
-                    hover:       createPatternSvg("dotsHover",       settings.colors.hover)
+                    highlighted: createSVGPattern("dotsHighlighted", settings.colors.highlighted),
+                    general:     createSVGPattern("dotsGeneral",     settings.colors.general),
+                    hover:       createSVGPattern("dotsHover",       settings.colors.hover)
                 };
 
-                this.prependModalContainer();
             },
             prependModalContainer: function() {
                 $(this.element).parent().prepend('<div class="main-modal"><div class="container"><div class="title"></div><div class="container-image" ><img src="" class="main-image" alt=""></div><p><h2></h2><div class="description"></div></p></div></div>');
@@ -63,7 +63,7 @@
         }
     );
 
-    function createPatternSvg(id, color) {
+    function createSVGPattern(id, color) {
         return '<pattern id="' + id + '" width="' + settings.svg.pattern.size.width + '" height="' + settings.svg.pattern.size.heigth + '"     patternUnits="userSpaceOnUse"><circle x="' + settings.svg.pattern.circle.x + '" y="' + settings.svg.pattern.circle.y + '" cx="' + settings.svg.pattern.circle.cx + '" cy="' + settings.svg.pattern.circle.cy + '" r="' + settings.svg.pattern.circle.r + '" style="stroke:none; fill:' + color + '"></circle></pattern>';
     }
 
