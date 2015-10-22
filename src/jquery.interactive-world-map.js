@@ -145,10 +145,10 @@
                         }
 
                         optionsPopup = {
-                            code:      code,
-                            margins:   defaults.popup.margins,
+                            code:    code,
+                            margins: defaults.popup.margins,
                             country: dataCountries[code],
-                            element:  $(this),
+                            element: $(this),
                             classes: defaults.classes.popup
                         };
 
