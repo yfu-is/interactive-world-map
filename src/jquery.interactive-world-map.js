@@ -18,7 +18,7 @@
         svg: {
            pattern: {
                 circle: {
-                    x: 1, y: 1, cx:3, cy: 3, r: 3
+                    x: 1, y: 1, cx:3, cy: 3, r: 2
                 },
                size: {
                    width:  "5",
@@ -90,6 +90,7 @@
                 $( this ).vectorMap( {
                     map             : 'world_mill_en',
                     backgroundColor : 'white',
+                    dotsGeneralId   : 'dotsGeneral',
                     regionStyle: {
 
                         initial: {
