@@ -88,9 +88,11 @@
 
 
                 $( this ).vectorMap( {
-                    map             : 'world_mill_en',
-                    backgroundColor : 'white',
-                    dotsGeneralId   : 'dotsGeneral',
+                    map               : 'world_mill_en',
+                    backgroundColor   : 'white',
+                    dotsGeneralId     : 'dotsGeneral',
+                    heightGeneralDots : '5',
+                    widthGeneralDots  : '5',
                     regionStyle: {
 
                         initial: {
