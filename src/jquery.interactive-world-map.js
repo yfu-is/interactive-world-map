@@ -67,7 +67,7 @@
                 this.prependModalContainer();
             },
             prependModalContainer: function() {
-                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + '" alt=""></div><p><h2></h2><div class="' + settings.classes.popup.description + '"></div></p></div></div>');
+                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + ' flag flag-icon-background  " alt=""></div><p><h2></h2><div class="' + settings.classes.popup.description + '"></div></p></div></div>');
 
             }
         }

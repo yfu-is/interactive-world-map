@@ -42,8 +42,12 @@
             $('.' + settings.classes.modal).css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
             $('.' + settings.classes.modal + ' .' + settings.classes.description).text(description);
             $('.' + settings.classes.title).text(countryName);
-            $('.' + settings.classes.image).attr('src', mainImage);
-
+            imageElement = '.' + settings.classes.image;
+            lastClass = $(imageElement).attr('class').split(' ').pop();
+            if(lastClass != settings.classes.image) {
+                $(imageElement).removeClass(lastClass);
+            }
+            $(imageElement).addClass('flag-icon-' + settings.code.toLowerCase());
         });
     };
 });

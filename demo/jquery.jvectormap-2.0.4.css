@@ -195,15 +195,9 @@ path {
     margin-left: 103px;
 }
 .main-modal .container .container-image .main-image {
-    border-radius: 150px !important;
-    -webkit-border-radius: 150px !important;
-    -moz-border-radius: 150px !important;
     height: 96px;
     width: 100px;
 }
-
-
-
 
 #modal-background.active, .main-modal.active {
     display: block;
