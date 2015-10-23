@@ -42,7 +42,6 @@
                     $('.' + settings.classes.containerWebsites).append('<a href="' + web.url + '" class="' + settings.classes.websites  + '">' + web.label + '</a>');
                 }
             );
-            mainImage    = settings.country.main_image;
 
             $('.' + settings.classes.modal).css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
             $('.' + settings.classes.title).text(countryName);
