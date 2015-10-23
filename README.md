@@ -1,29 +1,34 @@
 ## Vector Map customizable by JSON
 Dependency: [Jvectormap](http://jvectormap.com/)
+Dependency: [FlagIconCss](https://github.com/lipis/flag-icon-css)
 
-Main sources: jquery.interactive-world-map.js and the library. It includes the **.coffee** version of **jquery.interactive-world-map.js**
 
-The vector map show a modal with the information of the country clicked. The data you should send by Json for the map configuration.
+Core :  Jquery.interactive-world-map.js
+Popup:  Jquery.popup-interactive-world-map.js
+
+The vector map shows a modal with the information of the country clicked. 
 
 Actual main properties: **countries**, **margins**
 
 Example:
 ``` json
-    var options = { 'countries': {
-                "AT":
-                    {"name": "Austria", "main_image": "src", "description": "brief description"}
-                ,
-                "AR":
-                    {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
-                ,
-                "BR":
-                    {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worse in football than Argentina"}
+var options = {
+                "countries": {
+                    "AT":
+                    {"name": "Austria",   "websites":  [ { label: 'VISIT COUNTRY WEBSITE', url: 'http://www.yfu.at'} ]}
+                    ,
+                    "AR":
+                    {"name": "Argentina", "websites":  [ { label: 'VISIT COUNTRY WEBSITE', url: 'http://www.yfu.at'}, { label: 'VISIT GOV WEBSITE ', url: 'http://www.yfu.at'} ]}
+                    ,
+                    "BR":
+                    {"name": "Brasil",    "websites":  [ { label: 'VISIT COUNTRY WEBSITE', url: 'http://www.yfu.at'} ]}
+                 },
+                "popup": {
+                    "margins" : {"top": 100, "left": 20}
                 },
-                'margins': {
-                    "marginCountryPopupForTop"  : 100,
-                    "marginCountryPopupForLeft" : 60
+                "colors": {
+                    "hover" : "orange",
+                    "highlighted": "yellow"
                 }
             };
 ```
-For add more properties for the Country modal you have to add it in the onRegionClick at jquery.interactive-world-map.js and in the ``` $('#world-map').prepend() ``` the dom element.
-After that in the json you gonna be able to send it:).
