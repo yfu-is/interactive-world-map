@@ -174,7 +174,7 @@ path {
     width: 320px;
     z-index: 1000;
 }
-.container-image, .description {
+.container-image, .container-websites {
     display: inline;
     float: left;
 }
@@ -184,16 +184,27 @@ path {
     font-size: 20px;
     margin-right: 80px;
 }
+.main-modal .container .container-websites {
+    width: 200px;
+    display: block;
 
-.main-modal .container .description {
-    color: darkgrey;
-    float: right;
-    margin-right: 5px;
-    margin-top: -70px;
 }
-.main-modal .container .description {
-    margin-left: 103px;
+.main-modal .container .container-websites .websites {
+    float: left;
+    margin-left: 10px;
+    padding: 9px;
+    width: 171px;
+    min-height: 30px;
+    max-height: 35px;
+    color: white;
+    text-align: center;
+    background-color: #66C8C9;
+    text-decoration: none;
 }
+.main-modal .container .container-websites a{
+    margin-bottom: 3px;
+}
+
 .main-modal .container .container-image .main-image {
     height: 96px;
     width: 100px;

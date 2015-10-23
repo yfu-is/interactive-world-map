@@ -27,20 +27,24 @@
 
             new Popup(options);
 
-            $element   = $('g', settings.element).find("[data-code='" + settings.code  + "']");
-            $offset    = $element.offset();
+            $element     = $('g', settings.element).find("[data-code='" + settings.code  + "']");
+            $offset      = $element.offset();
 
             $(".main-modal, #modal-background").toggleClass("active");
             // Calculate the distance between the country and the top for show with the correctly space the popup
             distanceXtop = $offset.top  - settings.margins.top;
             distanceLeft = $offset.left + settings.margins.left;
 
-            countryName         = settings.country.name;
-            description         = settings.country.description;
-            mainImage           = settings.country.main_image;
+            countryName  = settings.country.name;
+            websites     = settings.country.websites;
+            $('.' + settings.classes.containerWebsites).empty(); // If has something appended inside from another country
+            $.each(websites, function (index, web ) {
+                    $('.' + settings.classes.containerWebsites).append('<a href="' + web.url + '" class="' + settings.classes.websites  + '">' + web.label + '</a>');
+                }
+            );
+            mainImage    = settings.country.main_image;
 
             $('.' + settings.classes.modal).css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
-            $('.' + settings.classes.modal + ' .' + settings.classes.description).text(description);
             $('.' + settings.classes.title).text(countryName);
             imageElement = '.' + settings.classes.image;
             lastClass = $(imageElement).attr('class').split(' ').pop();

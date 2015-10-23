@@ -28,12 +28,14 @@
         },
         classes: {
             popup: {
-                modal:          'main-modal',
-                container:      'container',
-                containerImage: 'container-image',
-                image:          'main-image',
-                description:    'description',
-                title:          'title'
+                containerWebsites: 'container-websites',
+                containerImage:    'container-image',
+                image:             'main-image',
+                modal:             'main-modal',
+                container:         'container',
+                websites :         'websites',
+                title:             'title'
+
             }
         }
     };
@@ -67,7 +69,7 @@
 
             },
             prependModalContainer: function() {
-                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + ' flag flag-icon-background  " alt=""></div><p><h2></h2><div class="' + settings.classes.popup.description + '"></div></p></div></div>');
+                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + ' flag flag-icon-background  " alt=""></div><p><h2></h2><div class="' + settings.classes.popup.containerWebsites + '"></div></a></p></div></div>');
 
             }
         }

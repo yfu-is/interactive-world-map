@@ -23,23 +23,23 @@
             var options = {
                 "countries": {
                     "AT":
-                    {"name": "Austria", "main_image": "src", "description": "brief description"}
+                    {"name": "Austria", "main_image": "src",  "websites":  [ { label: 'VISIT COUNTRY WEBSITE PRUEBA', url: 'http://www.yfu.at'} ]}
                     ,
                     "AR":
-                    {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
+                    {"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "websites":  [ { label: 'VISIT COUNTRY WEBSITE PRUEBA', url: 'http://www.yfu.at'}, { label: 'VISIT GOV WEBSITE ', url: 'http://www.yfu.at'} ]}
                     ,
                     "BR":
-                    {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
+                    {"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "websites":  [ { label: 'VISIT COUNTRY WEBSITE PRUEBA', url: 'http://www.yfu.at'} ]}
                  },
                 "popup": {
-                    "margins" : {"top": 50, "left": 20}
+                    "margins" : {"top": 100, "left": 20}
                 },
                 "colors": {
                     "hover" : "orange",
                     "highlighted": "yellow"
                 }
             };
-            $('#world-map').interactiveWorldMap()
+            $('#world-map').interactiveWorldMap(options)
         });
     </script>
 
@@ -47,13 +47,13 @@
 <body>
 <div id="world-map" data-colors = '{"hover": "red", "highlighted":  "blue"   }'  data-countries=' {
 "AT":
-{"name": "Austria", "main_image": "src", "description": "brief description"}
+{"name": "Austria", "main_image": "src", "websites": "brief description"}
 ,
 "AR":
-{"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "description": "The best country in the world"}
+{"name": "Argentina", "main_image": "http://estaticos2.catai.es/content/media/fotos/samples/large/paisaje-austriaco.jpg", "websites": "The best country in the world"}
 ,
 "BR":
-{"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "description": "Brasil is worst in football than Argentina"}
+{"name": "Brasil", "country_flag_image": "src", "main_image": "http://www.bvmemorial.fapesp.br/var/home/memorial/htdocs//local/Image/ban_brasil.JPG", "websites": "Brasil is worst in football than Argentina"}
 }
 ' ></div>
 </body>
