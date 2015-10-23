@@ -1,5 +1,5 @@
 ## Vector Map customizable by JSON
-Dependency: [Jvectormap](http://jvectormap.com/)
+Dependency: [Jvectormap](http://jvectormap.com/) <br />
 Dependency: [FlagIconCss](https://github.com/lipis/flag-icon-css)
 
 
@@ -33,7 +33,7 @@ var options = {
             };
 ```
 
-**Use:**
+**Use:**<br />
 In the dom you must add the  div where you want to render the map:
 ```
 <div id="world-map" ></div>
