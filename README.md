@@ -8,7 +8,7 @@ Popup:  Jquery.popup-interactive-world-map.js
 
 The vector map shows a modal with the information of the country clicked. 
 
-Actual main properties: **countries**, **margins**
+Actual main property:  **countries**
 
 Example:
 ``` json
@@ -31,4 +31,22 @@ var options = {
                     "highlighted": "yellow"
                 }
             };
+```
+
+**Use:**
+In the dom you must add the  div where you want to render the map:
+```
+<div id="world-map" ></div>
+```
+And call the plugin 
+```
+$('#world-map').interactiveWorldMap(options)
+```
+options can be setted by a simple **hash** like the example above or by **data-** parameters in the element:
+```
+<div id="world-map" data-colors = '{"hover": "red", "highlighted":  "blue"   }'  data-countries=' {
+"AT":
+{"name": "Austria", "websites": "..."}
+,.....
+
 ```
