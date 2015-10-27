@@ -1,7 +1,8 @@
 ;$(function( $, window, document, undefined) {
     var pluginName = "interactiveWorldMapCountryPopup";
     var settings;
-
+    var element;
+    var mainModal;
 
     var defaults = {
         popup: {
@@ -17,7 +18,9 @@
 
     $.extend(Popup.prototype, {
         init: function () {
-            settings   = $.extend(defaults, this._options);
+            settings  = $.extend(defaults, this._options);
+            element   = $('g', settings.element).find("[data-code='" + settings.code  + "']");
+            mainModal = element.parents(':eq(4)');
         }
     });
 
@@ -27,11 +30,9 @@
 
             new Popup(options);
 
-            $element     = $('g', settings.element).find("[data-code='" + settings.code  + "']");
-            $offset      = $element.offset();
+            $offset  = element.offset();
 
-            $context = $element.parent().parent().parent().parent();
-            $modal   = $context.find("." + settings.classes.modal);
+            $modal   = mainModal.find("." + settings.classes.modal);
 
             $modal.toggleClass("active");
             // Calculate the distance between the country and the top for show with the correctly space the popup
@@ -49,7 +50,7 @@
 
             $modal.css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
 
-            $context.find('.' + settings.classes.title).text(countryName); //Set the title (country name)
+            mainModal.find('.' + settings.classes.title).text(countryName); //Set the title (country name)
 
             imageElement = '.' + settings.classes.image;
             lastClass = $(imageElement).attr('class').split(' ').pop();
