@@ -37,6 +37,13 @@
                 title:             'title'
 
             }
+        },
+        ids:    {
+            dots: {
+                highlighted: 'dotsHighlighted',
+                general:     'dotsGeneral',
+                hover:       'dotsHover'
+            }
         }
     };
 
@@ -62,14 +69,14 @@
             createPatterns: function() {
 
                 patterns = {
-                    highlighted: createSVGPattern("dotsHighlighted", settings.colors.highlighted),
-                    general:     createSVGPattern("dotsGeneral",     settings.colors.general),
-                    hover:       createSVGPattern("dotsHover",       settings.colors.hover)
+                    highlighted: createSVGPattern(settings.ids.dots.highlighted, settings.colors.highlighted),
+                    general:     createSVGPattern(settings.ids.dots.general,     settings.colors.general),
+                    hover:       createSVGPattern(settings.ids.dots.hover,       settings.colors.hover)
                 };
 
             },
             prependModalContainer: function() {
-                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><img src="" class="' + settings.classes.popup.image + ' flag flag-icon-background  " alt=""></div><p><h2></h2><div class="' + settings.classes.popup.containerWebsites + '"></div></a></p></div></div>');
+                $(this.element).parent().prepend('<div class="' + settings.classes.popup.modal + '"><div class="' + settings.classes.popup.container + '"><div class="' + settings.classes.popup.title + '"></div><div class="' + settings.classes.popup.containerImage + '" ><div class="' + settings.classes.popup.image + ' flag flag-icon-background  " alt=""></div></div><p><h2></h2><div class="' + settings.classes.popup.containerWebsites + '"></div></a></p></div></div>');
 
             }
         }
@@ -101,13 +108,13 @@
                 $( this ).vectorMap( {
                     map               : 'world_mill_en',
                     backgroundColor   : 'white',
-                    dotsGeneralId     : 'dotsGeneral',
+                    dotsGeneralId     : settings.ids.dots.general,
                     heightGeneralDots : '5',
                     widthGeneralDots  : '5',
                     regionStyle: {
 
                         initial: {
-                            fill            :   'url(#dotsGeneral)'
+                            fill            :   'url(#' + settings.ids.dots.general + ')'
                         },
 
                         hover: {
@@ -127,7 +134,7 @@
                     onRegionOver: function (e, code) {
                         if(dataCountries[code]){
                             data = new Array;
-                            data[code] = 'url(#dotsHover)';
+                            data[code] = 'url(#' + settings.ids.dots.hover + ' )';
                             var mapObject = $(this).parent().vectorMap('get', 'mapObject');
                             mapObject.series.regions[0].setValues(data);
                         }
@@ -135,7 +142,7 @@
                     onRegionOut: function (e, code) {
                         if(dataCountries[code]) {
                             data = new Array;
-                            data[code] = 'url(#dotsHighlighted)';
+                            data[code] = 'url(#' + settings.ids.dots.highlighted + ')';
                             var mapObject = $(this).parent().vectorMap('get', 'mapObject');
                             mapObject.series.regions[0].setValues(data);
                         }
