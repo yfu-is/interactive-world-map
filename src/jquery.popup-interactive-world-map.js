@@ -1,7 +1,8 @@
 ;$(function( $, window, document, undefined) {
     var pluginName = "interactiveWorldMapCountryPopup";
     var settings;
-
+    var element;
+    var mainModal;
 
     var defaults = {
         popup: {
@@ -17,7 +18,9 @@
 
     $.extend(Popup.prototype, {
         init: function () {
-            settings   = $.extend(defaults, this._options);
+            settings  = $.extend(defaults, this._options);
+            element   = $('g', settings.element).find("[data-code='" + settings.code  + "']");
+            mainModal = element.parents(':eq(4)');
         }
     });
 
@@ -27,9 +30,10 @@
 
             new Popup(options);
 
-            $element     = $('g', settings.element).find("[data-code='" + settings.code  + "']");
-            $offset      = $element.offset();
-            $modal = $("." + settings.classes.modal );
+            $offset  = element.offset();
+
+            $modal   = mainModal.find("." + settings.classes.modal);
+
             $modal.toggleClass("active");
             // Calculate the distance between the country and the top for show with the correctly space the popup
             distanceXtop = $offset.top  - settings.margins.top;
@@ -39,16 +43,19 @@
             websites     = settings.country.websites;
             $('.' + settings.classes.containerWebsites).empty(); // If has something appended inside from another country
             $.each(websites, function (index, web ) {
-                    $('.' + settings.classes.containerWebsites).append('<a href="' + web.url + '" class="' + settings.classes.websites  + '">' + web.label + '</a>');
+                    classBtn = (web.main) ?  settings.classes.websites : 'regularBtn'; // if setted main then we show the button else a regular link
+                    $('.' + settings.classes.containerWebsites).append('<a href="' + web.url + '" class="' + classBtn  + '">' + web.label + '</a>');
                 }
             );
 
             $modal.css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
-            $('.' + settings.classes.title).text(countryName);
+
+            mainModal.find('.' + settings.classes.title).text(countryName); //Set the title (country name)
+
             imageElement = '.' + settings.classes.image;
             lastClass = $(imageElement).attr('class').split(' ').pop();
             if(lastClass != settings.classes.image) {
-                $(imageElement).removeClass(lastClass);
+                $(imageElement).removeClass(lastClass); //Remove the last flag css
             }
             $(imageElement).addClass('flag-icon-' + settings.code.toLowerCase());
         });
