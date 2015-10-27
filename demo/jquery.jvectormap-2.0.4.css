@@ -147,8 +147,10 @@ path {
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 992px){
     #world-map {
+        margin-top: 200px;
+        margin-left: 100px;
         height: 400px;
-        width: 600px;
+        width: 960px;
     }
 }
 
@@ -159,11 +161,10 @@ path {
         width: 100%;
     }
 }
-
-
 .main-modal {
-    background: url("img/bgpopup.png") no-repeat;
-    background-size: 340px;
+    max-height: 280px;
+    border: solid 4px #cccccc;
+    background-color: #FFFFFF;
     display: none;
     height: 234px;
     left: 50%;
@@ -171,7 +172,7 @@ path {
     padding: 10px;
     position: fixed;
     top: 50%;
-    width: 320px;
+    width: 340px;
     z-index: 1000;
 }
 .container-image, .container-websites {
@@ -212,4 +213,23 @@ path {
 
 .main-modal.active {
     display: block;
-}​
+}
+
+
+ .main-modal:after {
+     content:'';
+     position: absolute;
+     top: 94%;
+     left: 0;
+     right: 0;
+     margin: 0 auto;
+     width: 30px;
+     height: 30px;
+     background-color: white;
+     -webkit-transform: rotate(43.5deg);
+     -moz-transform: rotate(44.5deg);
+     -o-transform: rotate(44.5deg);
+     -ms-transform: rotate(44.5deg);
+     border-right: 1px solid #cccccc;
+     border-bottom: 1px solid #cccccc;
+ }

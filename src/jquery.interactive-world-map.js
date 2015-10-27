@@ -114,7 +114,7 @@
                     regionStyle: {
 
                         initial: {
-                            fill            :   'url(#' + settings.ids.dots.generla + ')'
+                            fill            :   'url(#' + settings.ids.dots.general + ')'
                         },
 
                         hover: {
@@ -134,7 +134,7 @@
                     onRegionOver: function (e, code) {
                         if(dataCountries[code]){
                             data = new Array;
-                            data[code] = 'url(# ' + settings.ids.dots.hover + ' )';
+                            data[code] = 'url(#' + settings.ids.dots.hover + ' )';
                             var mapObject = $(this).parent().vectorMap('get', 'mapObject');
                             mapObject.series.regions[0].setValues(data);
                         }
