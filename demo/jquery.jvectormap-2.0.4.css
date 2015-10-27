@@ -210,6 +210,6 @@ path {
     width: 100px;
 }
 
-#modal-background.active, .main-modal.active {
+.main-modal.active {
     display: block;
 }​

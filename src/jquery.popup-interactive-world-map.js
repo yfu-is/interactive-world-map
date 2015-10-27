@@ -29,8 +29,8 @@
 
             $element     = $('g', settings.element).find("[data-code='" + settings.code  + "']");
             $offset      = $element.offset();
-
-            $(".main-modal, #modal-background").toggleClass("active");
+            $modal = $("." + settings.classes.modal );
+            $modal.toggleClass("active");
             // Calculate the distance between the country and the top for show with the correctly space the popup
             distanceXtop = $offset.top  - settings.margins.top;
             distanceLeft = $offset.left + settings.margins.left;
@@ -43,7 +43,7 @@
                 }
             );
 
-            $('.' + settings.classes.modal).css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
+            $modal.css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
             $('.' + settings.classes.title).text(countryName);
             imageElement = '.' + settings.classes.image;
             lastClass = $(imageElement).attr('class').split(' ').pop();

@@ -37,6 +37,13 @@
                 title:             'title'
 
             }
+        },
+        ids:    {
+            dots: {
+                highlighted: 'dotsHighlighted',
+                general:     'dotsGeneral',
+                hover:       'dotsHover'
+            }
         }
     };
 
@@ -62,9 +69,9 @@
             createPatterns: function() {
 
                 patterns = {
-                    highlighted: createSVGPattern("dotsHighlighted", settings.colors.highlighted),
-                    general:     createSVGPattern("dotsGeneral",     settings.colors.general),
-                    hover:       createSVGPattern("dotsHover",       settings.colors.hover)
+                    highlighted: createSVGPattern(settings.ids.dots.highlighted, settings.colors.highlighted),
+                    general:     createSVGPattern(settings.ids.dots.general,     settings.colors.general),
+                    hover:       createSVGPattern(settings.ids.dots.hover,       settings.colors.hover)
                 };
 
             },
@@ -101,13 +108,13 @@
                 $( this ).vectorMap( {
                     map               : 'world_mill_en',
                     backgroundColor   : 'white',
-                    dotsGeneralId     : 'dotsGeneral',
+                    dotsGeneralId     : settings.ids.dots.general,
                     heightGeneralDots : '5',
                     widthGeneralDots  : '5',
                     regionStyle: {
 
                         initial: {
-                            fill            :   'url(#dotsGeneral)'
+                            fill            :   'url(#' + settings.ids.dots.generla + ')'
                         },
 
                         hover: {
@@ -127,7 +134,7 @@
                     onRegionOver: function (e, code) {
                         if(dataCountries[code]){
                             data = new Array;
-                            data[code] = 'url(#dotsHover)';
+                            data[code] = 'url(# ' + settings.ids.dots.hover + ' )';
                             var mapObject = $(this).parent().vectorMap('get', 'mapObject');
                             mapObject.series.regions[0].setValues(data);
                         }
@@ -135,7 +142,7 @@
                     onRegionOut: function (e, code) {
                         if(dataCountries[code]) {
                             data = new Array;
-                            data[code] = 'url(#dotsHighlighted)';
+                            data[code] = 'url(#' + settings.ids.dots.highlighted + ')';
                             var mapObject = $(this).parent().vectorMap('get', 'mapObject');
                             mapObject.series.regions[0].setValues(data);
                         }
