@@ -209,6 +209,9 @@ path {
 .main-modal .container .container-image .main-image {
     height: 96px;
     width: 100px;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
 }
 
 .main-modal.active {
