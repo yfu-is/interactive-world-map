@@ -83,7 +83,7 @@ $ ($, window, document) ->
         widthGeneralDots:    '5'
         regionStyle:
           initial:
-            fill:     'url(#' + settings.ids.dots.general + ')'
+            fill:     "url(#{settings.ids.dots.general})"
           hover:
             'fill-opacity': 1
         series:
@@ -122,4 +122,4 @@ $ ($, window, document) ->
 
       #Apply the svg patterns to the DOM
       $defs = $(this).children('.jvectormap-container').children('svg').children('defs');
-      $defs.html patterns.general + patterns.highlighted + patterns.hover
+      $defs.html (patterns.general + patterns.highlighted + patterns.hover)
