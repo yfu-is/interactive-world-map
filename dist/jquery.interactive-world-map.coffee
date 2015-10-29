@@ -27,13 +27,14 @@ $ ($, window, document) ->
           height: '5'
     classes:
       popup:
-        containerWebsites: 'container-websites'
-        containerImage:    'container-image'
-        image:             'main-image'
-        modal:             'main-modal'
-        container:         'container'
-        websites:          'websites'
-        title:             'title'
+        containerWebsites:         'container-websites'
+        containerTitleAndWebsites: 'titleAndWebsites'
+        containerImage:            'container-image'
+        image:                     'main-image'
+        modal:                     'main-modal'
+        container:                 'container'
+        websites:                  'websites'
+        title:                     'title'
     ids:
       dots:
         highlighted: 'dotsHighlighted'
@@ -65,7 +66,7 @@ $ ($, window, document) ->
         general:     createSVGPattern(settings.ids.dots.general, settings.colors.general)
         hover:       createSVGPattern(settings.ids.dots.hover, settings.colors.hover)
     prependModalContainer: ->
-      $(@element).prepend "<div class='#{settings.classes.popup.modal}'><div class='#{settings.classes.popup.container}'><div class='#{settings.classes.popup.image} flag flag-icon-background  ' ></div><span class='closeBtn'>X</span><div><div class='#{settings.classes.popup.title}'></div><div class='#{settings.classes.popup.containerWebsites}'></div></div></a></p></div></div>"
+      $(@element).prepend "<div class='#{settings.classes.popup.modal}'><span class='closeBtn'>X</span><div class='#{settings.classes.popup.container}'><div class='#{settings.classes.popup.image} flag flag-icon-background  ' ></div><div class='#{settings.classes.popup.containerTitleAndWebsites}'><div class='#{settings.classes.popup.title}'></div><div class='#{settings.classes.popup.containerWebsites}'></div></div></a></div></div>"
 
   $.fn[pluginName] = (options) ->
     @each ->
