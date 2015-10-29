@@ -86,14 +86,6 @@
         return '<pattern id="' + id + '" width="' + settings.svg.pattern.size.width + '" height="' + settings.svg.pattern.size.heigth + '"     patternUnits="userSpaceOnUse"><circle x="' + settings.svg.pattern.circle.x + '" y="' + settings.svg.pattern.circle.y + '" cx="' + settings.svg.pattern.circle.cx + '" cy="' + settings.svg.pattern.circle.cy + '" r="' + settings.svg.pattern.circle.r + '" style="stroke:none; fill:' + color + '"></circle></pattern>';
     }
 
-    function setPatterns(code, type) {
-        if(dataCountries[code]){
-            data = new Array;
-            data[code] = 'url(# ' + type + ' )';
-            var mapObject = $(this).parent().vectorMap('get', 'mapObject');
-            mapObject.series.regions[0].setValues(data);
-        }
-    }
 
     $.fn[ pluginName ] = function(options) {
         return this.each(function() {
