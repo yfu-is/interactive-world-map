@@ -179,10 +179,16 @@ path {
     display: inline;
     float: left;
 }
+.main-modal .container {
+    margin-top: 40px;
+}
+.main-modal .container .container-image {
+    padding-right: 9px;
+}
 .main-modal .container .title {
     color: #2E9AFE;
     font-size: 20px;
-    margin-left: 103px;
+    margin-left: 112px;
     font-weight: bold;
 }
 .main-modal .container .container-websites {

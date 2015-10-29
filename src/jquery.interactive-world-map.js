@@ -101,6 +101,8 @@
                     map               : 'world_mill_en',
                     backgroundColor   : 'white',
                     dotsGeneralId     : settings.ids.dots.general,
+                    dotsHighlightedId : settings.ids.dots.highlighted,
+                    dotsHoverId       : settings.ids.dots.hover,
                     heightGeneralDots : '5',
                     widthGeneralDots  : '5',
                     regionStyle: {
