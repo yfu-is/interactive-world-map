@@ -1,7 +1,8 @@
 $ ($, window, document) ->
-  pluginName = 'interactiveWorldMapCountryPopup'
-  settings   = null
-  element    = null
+  pluginName   = 'interactiveWorldMapCountryPopup'
+  modalElement = null
+  settings     = null
+  element      = null
 
   defaults =
     popup:
@@ -17,7 +18,7 @@ $ ($, window, document) ->
     init: ->
       settings  = $.extend(defaults, @_options)
       element   = $('g', settings.element).find("[data-code='#{settings.code}']")
-      @closeModal
+      @closeModal()
     closeModal: ->
       findModal      = element.parents(':eq(4)');
       modalElement   = findModal.find("." + settings.classes.modal);

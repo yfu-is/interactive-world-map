@@ -65,7 +65,7 @@ $ ($, window, document) ->
         general:     createSVGPattern(settings.ids.dots.general, settings.colors.general)
         hover:       createSVGPattern(settings.ids.dots.hover, settings.colors.hover)
     prependModalContainer: ->
-      $(@element).prepend "<div class='#{settings.classes.popup.modal}'><div class='#{settings.classes.popup.container}'><div class='#{settings.classes.popup.containerImage}' ><div class='#{settings.classes.popup.image} flag flag-icon-background  ' ></div></div><div><div class='#{settings.classes.popup.title}'></div><div class='#{settings.classes.popup.containerWebsites}'></div></div></a></p></div></div>"
+      $(@element).prepend "<div class='#{settings.classes.popup.modal}'><div class='#{settings.classes.popup.container}'><span class='closeBtn'>X</span><div class='#{settings.classes.popup.containerImage}' ><div class='#{settings.classes.popup.image} flag flag-icon-background  ' ></div></div><div><div class='#{settings.classes.popup.title}'></div><div class='#{settings.classes.popup.containerWebsites}'></div></div></a></p></div></div>"
 
   $.fn[pluginName] = (options) ->
     @each ->
@@ -84,7 +84,7 @@ $ ($, window, document) ->
         widthGeneralDots:    '5'
         regionStyle:
           initial:
-            fill:     "url(#{settings.ids.dots.general})"
+            fill:     "url(##{settings.ids.dots.general})"
           hover:
             'fill-opacity': 1
         series:
