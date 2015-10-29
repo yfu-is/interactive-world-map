@@ -2,7 +2,7 @@
     var pluginName = "interactiveWorldMapCountryPopup";
     var settings;
     var element;
-    var mainModal;
+    var modalElement;
 
     var defaults = {
         popup: {
@@ -18,10 +18,19 @@
 
     $.extend(Popup.prototype, {
         init: function () {
-            settings  = $.extend(defaults, this._options);
-            element   = $('g', settings.element).find("[data-code='" + settings.code  + "']");
-            mainModal = element.parents(':eq(4)');
+            settings       = $.extend(defaults, this._options);
+            element        = $('g', settings.element).find("[data-code='" + settings.code  + "']");
+            this.closeModal();
+        },
+
+        closeModal: function() {
+            findModal      = element.parents(':eq(4)');
+            modalElement   = findModal.find("." + settings.classes.modal);
+            $('.closeBtn').click( function() {
+                modalElement.hide('slow');
+            });
         }
+
     });
 
 
@@ -32,9 +41,9 @@
 
             $offset  = element.offset();
 
-            $modal   = mainModal.find("." + settings.classes.modal);
 
-            $modal.toggleClass("active");
+            modalElement.toggleClass("active");
+            modalElement.css("display", "block");
             // Calculate the distance between the country and the top for show with the correctly space the popup
             distanceXtop = $offset.top  - settings.margins.top;
             distanceLeft = $offset.left + settings.margins.left;
@@ -48,9 +57,8 @@
                 }
             );
 
-            $modal.css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
-
-            mainModal.find('.' + settings.classes.title).text(countryName); //Set the title (country name)
+            modalElement.css("top", distanceXtop + 'px').css("left", distanceLeft + 'px');
+            modalElement.find('.' + settings.classes.title).text(countryName); //Set the title (country name)
 
             imageElement = '.' + settings.classes.image;
             lastClass = $(imageElement).attr('class').split(' ').pop();
