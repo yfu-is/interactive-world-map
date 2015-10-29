@@ -175,7 +175,7 @@ path {
     width: 340px;
     z-index: 1000;
 }
-.container-image, .container-websites {
+.main-image, .container-websites {
     display: inline;
     float: left;
 }
@@ -226,7 +226,7 @@ path {
     margin-bottom: 3px;
 }
 
-.main-modal .container .container-image .main-image {
+.main-modal .container .main-image {
     width: 95px;
     height: 100px;
     background-size: cover;
