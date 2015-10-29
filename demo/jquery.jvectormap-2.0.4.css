@@ -182,11 +182,10 @@ path {
 .main-modal .container {
     margin-top: 40px;
 }
-.main-modal .container .closeBtn {
+.main-modal .closeBtn {
     float: right;
     font-size: 13px;
     color: #cccccc;
-    margin-top: -40px;
 }
 .main-modal .container .container-image {
     padding-right: 9px;
@@ -197,12 +196,12 @@ path {
     margin-left: 112px;
     font-weight: bold;
 }
-.main-modal .container .container-websites {
+.main-modal .container .titleAndWebsites .container-websites {
     width: 200px;
     display: block;
 
 }
-.main-modal .container .container-websites .websites {
+.main-modal .container .titleAndWebsites .container-websites .websites {
     float: left;
     margin-left: 10px;
     padding: 9px;
@@ -222,7 +221,7 @@ path {
     float: left;
     text-decoration: none;
 }
-.main-modal .container .container-websites a{
+.main-modal .container .titleAndWebsites .container-websites a{
     margin-bottom: 3px;
 }
 
