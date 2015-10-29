@@ -2,7 +2,6 @@ $ ($, window, document) ->
   pluginName = 'interactiveWorldMapCountryPopup'
   settings   = null
   element    = null
-  mainModal  = null
 
   defaults =
     popup:
@@ -17,16 +16,21 @@ $ ($, window, document) ->
   $.extend Popup.prototype,
     init: ->
       settings  = $.extend(defaults, @_options)
-      element   = $('g', settings.element).find("[data-code='#{settings.code}']");
-      mainModal = element.parents(':eq(4)');
+      element   = $('g', settings.element).find("[data-code='#{settings.code}']")
+      @closeModal
+    closeModal: ->
+      findModal      = element.parents(':eq(4)');
+      modalElement   = findModal.find("." + settings.classes.modal);
+      $('.closeBtn').click ->
+         modalElement.hide ('slow')
 
   $.fn[pluginName] = (options) ->
 
     jQuery(this).each ->
       new Popup (options)
       $offset = element.offset()
-      $modal  = mainModal.find(".#{settings.classes.modal}")
-      $modal.toggleClass('active')
+      modalElement.toggleClass('active')
+      modalElement.css("display", "block");
 
       # Calculate the distance between the country and the top of the browser for show with the correctly space the popup
       distanceXtop = $offset.top  - settings.margins.top
@@ -42,8 +46,8 @@ $ ($, window, document) ->
         # if comes  "main" then we show the button else we just show a regular link for this website
         $(".#{settings.classes.containerWebsites}").append "<a href='#{web.url}' class='#{classBtn}'>#{web.label}</a>"
 
-      $modal.css('top',"#{distanceXtop}px").css 'left',  "#{distanceLeft}px"
-      mainModal.find(".#{settings.classes.title}").text(countryName)
+      modalElement.css('top',"#{distanceXtop}px").css 'left',  "#{distanceLeft}px"
+      modalElement.find(".#{settings.classes.title}").text(countryName)
 
       #Set the title (country name)
       imageElement = ".#{settings.classes.image}"

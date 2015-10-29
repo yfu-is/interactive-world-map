@@ -182,6 +182,12 @@ path {
 .main-modal .container {
     margin-top: 40px;
 }
+.main-modal .container .closeBtn {
+    float: right;
+    font-size: 13px;
+    color: #cccccc;
+    margin-top: -40px;
+}
 .main-modal .container .container-image {
     padding-right: 9px;
 }
