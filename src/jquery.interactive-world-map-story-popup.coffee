@@ -38,12 +38,11 @@ $ ($, window, document) ->
       distanceLeft = $offset.left + settings.margins.left
       countryName  = settings.country.name
       stories      = settings.country.stories
-      $(".#{settings.classes.containerStories} .stories").empty()
+      $(".#{settings.classes.containerStories} .#{settings.classes.ulClass}").empty()  # If has something appended inside from another country we remove it
 
-      # If has something appended inside from another country
       $.each stories, (index, story) ->
-        # if comes  "main" then we show the button else we just show a regular link for this website
-        $(".#{settings.classes.containerStories} .stories").append "<li class='#{story.type}'><i></i><a href='#{story.url}' >#{story.title}</a></li>"
+        #Here we append the story with its class
+        $(".#{settings.classes.containerStories} .#{settings.classes.ulClass}").append "<li class='#{story.type}'><i></i><a href='#{story.url}' >#{story.title}</a></li>"
 
       modalElement.css('top',"#{distanceXtop}px").css 'left',  "#{distanceLeft}px"
       modalElement.find(".#{settings.classes.countryName}").text(countryName)
