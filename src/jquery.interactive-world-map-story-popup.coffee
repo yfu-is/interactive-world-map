@@ -19,6 +19,7 @@ $ ($, window, document) ->
       settings = $.extend(defaults, @_options)
       element   = $('g', settings.element).find("[data-code='#{settings.code}']")
       @closeModal()
+
     closeModal: ->
       findModal      = element.parents(':eq(4)');
       modalElement   = findModal.find("." + settings.classes.modal);
