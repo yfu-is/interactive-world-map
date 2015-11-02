@@ -131,9 +131,6 @@ $ ($, window, document) ->
             element: $(this)
 
           switch settings.type
-            when 'countries'
-              optionsPopup.classes = defaults.classes.popup.country
-              new  $.fn.interactiveWorldMapCountryPopup (optionsPopup)
             when 'stories'
               optionsPopup.classes = defaults.classes.popup.story
               new  $.fn.interactiveWorldMapStoryPopup (optionsPopup)

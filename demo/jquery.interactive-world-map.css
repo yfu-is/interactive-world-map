@@ -1,0 +1,194 @@
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 992px){
+    #world-map {
+        margin-top: 200px;
+        margin-left: 100px;
+        height: 400px;
+        width: 960px;
+    }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px)  and (max-width : 992px) {
+    #world-map {
+        height: 900px;
+        width: 100%;
+    }
+}
+.main-modal {
+    max-height: 280px;
+    border: solid 4px #cccccc;
+    background-color: #FFFFFF;
+    display: none;
+    height: 234px;
+    left: 50%;
+    margin: -120px 0 0 -160px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 340px;
+    z-index: 1000;
+}
+.main-image, .container-websites {
+    display: inline;
+    float: left;
+}
+.main-modal .container {
+    margin-top: 40px;
+}
+.closeBtn {
+    float: right;
+    font-size: 13px;
+    color: #cccccc;
+}
+.main-modal .container .container-image {
+    padding-right: 9px;
+}
+.main-modal .container .title {
+    color: #2E9AFE;
+    font-size: 20px;
+    margin-left: 112px;
+    font-weight: bold;
+}
+.main-modal .container .titleAndWebsites .container-websites {
+    width: 200px;
+    display: block;
+
+}
+.main-modal .container .titleAndWebsites .container-websites .websites {
+    float: left;
+    margin-left: 10px;
+    padding: 9px;
+    width: 172px;
+    font-size: 14px;
+    min-height: 30px;
+    max-height: 35px;
+    color: white;
+    text-align: center;
+    background-color: #66C8C9;
+    text-decoration: none;
+}
+.regularBtn {
+    border-bottom: dotted;
+    color: #66C8C9;
+    margin-left: 11px;
+    float: left;
+    text-decoration: none;
+}
+.main-modal .container .titleAndWebsites .container-websites a{
+    margin-bottom: 3px;
+}
+
+.main-modal .container .main-image {
+    width: 95px;
+    height: 100px;
+    background-size: cover;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+}
+
+.main-modal.active {
+    display: block;
+}
+
+
+.main-modal:after {
+    content:'';
+    position: absolute;
+    top: 94%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    -webkit-transform: rotate(43.5deg);
+    -moz-transform: rotate(44.5deg);
+    -o-transform: rotate(44.5deg);
+    -ms-transform: rotate(44.5deg);
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+/* Stories  */
+
+
+.stories-main-modal{
+    max-height: 280px;
+    border: solid 4px #cccccc;
+    background-color: #FFFFFF;
+    display: none;
+    height: 234px;
+    left: 50%;
+    margin: -120px 0 0 -160px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 340px;
+    z-index: 1000;
+}
+
+.stories-main-modal .container {
+    margin-top: 40px;
+    width: 250px;
+}
+.stories-main-modal .container .title  {
+    color: #2E9AFE;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories {
+    list-style-type: none;
+    padding: 0;
+    width:   350px;
+}
+.stories-main-modal .container .countryAndStories .container-stories .stories  li {
+    float: left;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories  li i {
+    background-image: url('http://www.yfu.at/assets/templates/yfu_yellow/yfu_icons-032b9a67ed94af747b75eb818d59a8a7.png');
+    background-repeat: no-repeat;
+    height:  19px;
+    display: inline-block;
+    width:   58px;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories  li a {
+    text-decoration: none;
+    font-size:       17px;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories li a:visited {
+    color: #2E9AFE;
+}
+
+
+
+.stories-main-modal.active {
+    display: block;
+}
+
+
+.stories-main-modal:after {
+    content:'';
+    position: absolute;
+    top: 94%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    -webkit-transform: rotate(43.5deg);
+    -moz-transform: rotate(44.5deg);
+    -o-transform: rotate(44.5deg);
+    -ms-transform: rotate(44.5deg);
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
