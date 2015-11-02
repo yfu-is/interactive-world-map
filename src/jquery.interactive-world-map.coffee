@@ -17,9 +17,6 @@ $ ($, window, document) ->
     svg:
       pattern:
         size: 5
-        circle:
-          x: 1
-          y: 1
     classes:
       popup:
         country:
