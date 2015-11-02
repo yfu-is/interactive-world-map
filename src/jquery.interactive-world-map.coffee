@@ -12,8 +12,8 @@ $ ($, window, document) ->
       highlighted: 'green'
     popup:
       margins:
-        top: 100
-        left: 60
+        top: 120
+        left: 0
     svg:
       pattern:
         circle:
@@ -27,14 +27,22 @@ $ ($, window, document) ->
           height: '5'
     classes:
       popup:
-        containerWebsites:         'container-websites'
-        containerTitleAndWebsites: 'titleAndWebsites'
-        containerImage:            'container-image'
-        image:                     'main-image'
-        modal:                     'main-modal'
-        container:                 'container'
-        websites:                  'websites'
-        title:                     'title'
+        country:
+          containerWebsites:         'container-websites'
+          containerTitleAndWebsites: 'titleAndWebsites'
+          containerImage:            'container-image'
+          image:                     'main-image'
+          modal:                     'main-modal'
+          container:                 'container'
+          websites:                  'websites'
+          title:                     'title'
+        story:
+          modal:                          'stories-main-modal'
+          containerStories:               'container-stories'
+          containerCountryNameAndStories: 'countryAndStories'
+          container:                      'container'
+          ulClass:                        'stories'
+          countryName:                    'title'
     ids:
       dots:
         highlighted: 'dotsHighlighted'
@@ -66,7 +74,8 @@ $ ($, window, document) ->
         general:     createSVGPattern(settings.ids.dots.general, settings.colors.general)
         hover:       createSVGPattern(settings.ids.dots.hover, settings.colors.hover)
     prependModalContainer: ->
-      $(@element).prepend "<div class='#{settings.classes.popup.modal}'><span class='closeBtn'>X</span><div class='#{settings.classes.popup.container}'><div class='#{settings.classes.popup.image} flag flag-icon-background  ' ></div><div class='#{settings.classes.popup.containerTitleAndWebsites}'><div class='#{settings.classes.popup.title}'></div><div class='#{settings.classes.popup.containerWebsites}'></div></div></a></div></div>"
+      $(@element).prepend "<div class='#{settings.classes.popup.country.modal}'><span class='closeBtn'>X</span><div class='#{settings.classes.popup.country.container}'><div class='#{settings.classes.popup.country.image} flag flag-icon-background  ' ></div><div class='#{settings.classes.popup.country.containerTitleAndWebsites}'><div class='#{settings.classes.popup.country.title}'></div><div class='#{settings.classes.popup.country.containerWebsites}'></div></div></a></div></div>"
+      $(@element).prepend "<div class='#{settings.classes.popup.story.modal}'><span class='closeBtn'>X</span><div   class='#{settings.classes.popup.story.container}'><div class='#{settings.classes.popup.story.containerCountryNameAndStories}'><div class='#{settings.classes.popup.story.countryName}'></div><div class='#{settings.classes.popup.story.containerStories}'><ul class='#{settings.classes.popup.story.ulClass}'></ul></div></div></a></div></div>"
 
   $.fn[pluginName] = (options) ->
     @each ->
@@ -114,13 +123,20 @@ $ ($, window, document) ->
         onRegionClick: (e, code) ->
           if !dataCountries[code]
             return
+
           optionsPopup =
             code: code
-            margins: defaults.popup.margins
             country: dataCountries[code]
+            margins: defaults.popup.margins
             element: $(this)
-            classes: defaults.classes.popup
-          new  $.fn.interactiveWorldMapCountryPopup (optionsPopup)
+
+          switch settings.type
+            when 'stories'
+              optionsPopup.classes = defaults.classes.popup.story
+              new  $.fn.interactiveWorldMapStoryPopup (optionsPopup)
+            else
+              optionsPopup.classes = defaults.classes.popup.country
+              new  $.fn.interactiveWorldMapCountryPopup (optionsPopup)
 
       #Apply the svg patterns to the DOM
       $defs = $(this).children('.jvectormap-container').children('svg').children('defs');
