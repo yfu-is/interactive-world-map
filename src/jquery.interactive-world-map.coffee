@@ -16,15 +16,7 @@ $ ($, window, document) ->
         left: 0
     svg:
       pattern:
-        circle:
-          x: 1
-          y: 1
-          cx: 3
-          cy: 3
-          r: 2
-        size:
-          width: '5'
-          height: '5'
+        size: 5
     classes:
       popup:
         country:
@@ -55,7 +47,7 @@ $ ($, window, document) ->
     @init()
 
   createSVGPattern = (id, color) ->
-    "<pattern id='#{id}' width='#{settings.svg.pattern.size.width}' height='#{settings.svg.pattern.size.height}'     patternUnits='userSpaceOnUse'><circle x='#{settings.svg.pattern.circle.x}' y='#{settings.svg.pattern.circle.y}' cx='#{settings.svg.pattern.circle.cx}' cy='#{settings.svg.pattern.circle.cy}' r='#{settings.svg.pattern.circle.r}' style='stroke:none; fill:#{color}'></circle></pattern>"
+    "<pattern id='#{id}' width='#{settings.svg.pattern.size}' height='#{settings.svg.pattern.size}'     patternUnits='userSpaceOnUse'><circle  cx='#{settings.svg.pattern.size / 2}' cy='#{settings.svg.pattern.size / 2}' r='#{settings.svg.pattern.size / 4}' style='stroke:none; fill:#{color}'></circle></pattern>"
 
   $.extend InteractiveWorldMap.prototype,
     init: ->
@@ -90,8 +82,6 @@ $ ($, window, document) ->
         dotsGeneralId:       settings.ids.dots.general,
         dotsHighlightedId:   settings.ids.dots.highlighted,
         dotsHoverId:         settings.ids.dots.hover,
-        heightGeneralDots:   '5'
-        widthGeneralDots:    '5'
         regionStyle:
           initial:
             fill:     "url(##{settings.ids.dots.general})"
@@ -137,6 +127,38 @@ $ ($, window, document) ->
             else
               optionsPopup.classes = defaults.classes.popup.country
               new  $.fn.interactiveWorldMapCountryPopup (optionsPopup)
+
+        onViewportChange: (e, scale) ->
+          generalDots     = $("#" + settings.ids.dots.general);
+          highlightedDots = $("#" + settings.ids.dots.highlighted);
+          hoverDots       = $("#" + settings.ids.dots.hover);
+
+          newWidth     = ( settings.svg.pattern.size  / scale );
+          newHeight    = ( settings.svg.pattern.size / scale );
+
+          generalDots.attr('width',  newWidth);
+          generalDots.attr('height', newHeight);
+
+          highlightedDots.attr('width',  newWidth);
+          highlightedDots.attr('height', newHeight);
+
+          hoverDots.attr('width',  newWidth);
+          hoverDots.attr('height', newHeight);
+
+
+          radius = (generalDots.attr('width') / 4);
+
+          generalDots.children('circle').attr('r',  radius)
+          generalDots.children('circle').attr('cx', newWidth  / 2)
+          generalDots.children('circle').attr('cy', newHeight / 2)
+
+          highlightedDots.children('circle').attr('r',  radius)
+          highlightedDots.children('circle').attr('cx', newWidth  / 2)
+          highlightedDots.children('circle').attr('cy', newHeight / 2)
+
+          hoverDots.children('circle').attr('r',  radius)
+          hoverDots.children('circle').attr('cx', newWidth  / 2)
+          hoverDots.children('circle').attr('cy', newHeight / 2)
 
       #Apply the svg patterns to the DOM
       $defs = $(this).children('.jvectormap-container').children('svg').children('defs');
