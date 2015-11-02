@@ -182,7 +182,7 @@ path {
 .main-modal .container {
     margin-top: 40px;
 }
-.main-modal .closeBtn {
+.closeBtn {
     float: right;
     font-size: 13px;
     color: #cccccc;
@@ -239,20 +239,100 @@ path {
 }
 
 
- .main-modal:after {
-     content:'';
-     position: absolute;
-     top: 94%;
-     left: 0;
-     right: 0;
-     margin: 0 auto;
-     width: 30px;
-     height: 30px;
-     background-color: white;
-     -webkit-transform: rotate(43.5deg);
-     -moz-transform: rotate(44.5deg);
-     -o-transform: rotate(44.5deg);
-     -ms-transform: rotate(44.5deg);
-     border-right: 1px solid #cccccc;
-     border-bottom: 1px solid #cccccc;
- }
+.main-modal:after {
+    content:'';
+    position: absolute;
+    top: 94%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    -webkit-transform: rotate(43.5deg);
+    -moz-transform: rotate(44.5deg);
+    -o-transform: rotate(44.5deg);
+    -ms-transform: rotate(44.5deg);
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+/* Stories  */
+
+
+.stories-main-modal{
+    max-height: 280px;
+    border: solid 4px #cccccc;
+    background-color: #FFFFFF;
+    display: none;
+    height: 234px;
+    left: 50%;
+    margin: -120px 0 0 -160px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 340px;
+    z-index: 1000;
+}
+
+.stories-main-modal .container {
+    margin-top: 40px;
+    width: 250px;
+}
+.stories-main-modal .container .title  {
+    color: #2E9AFE;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories {
+    list-style-type: none;
+    padding: 0;
+    width:   350px;
+}
+.stories-main-modal .container .countryAndStories .container-stories .stories  li {
+    float: left;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories  li i {
+    background-image: url('http://www.yfu.at/assets/templates/yfu_yellow/yfu_icons-032b9a67ed94af747b75eb818d59a8a7.png');
+    background-repeat: no-repeat;
+    height:  19px;
+    display: inline-block;
+    width:   58px;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories  li a {
+    text-decoration: none;
+    font-size:       17px;
+}
+
+.stories-main-modal .container .countryAndStories .container-stories .stories li a:visited {
+    color: #2E9AFE;
+}
+
+
+
+.stories-main-modal.active {
+    display: block;
+}
+
+
+.stories-main-modal:after {
+    content:'';
+    position: absolute;
+    top: 94%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    -webkit-transform: rotate(43.5deg);
+    -moz-transform: rotate(44.5deg);
+    -o-transform: rotate(44.5deg);
+    -ms-transform: rotate(44.5deg);
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}

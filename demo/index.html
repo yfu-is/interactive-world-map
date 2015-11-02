@@ -11,8 +11,9 @@
     <script src="jquery.jvectormap-world-mill-en.js"></script>
     <!-- end vector map -->
     <!-- Our lib :) -->
-    <script src="../dist/jquery.interactive-world-map-country-popup.js"></script>
-    <script src="../dist/jquery.interactive-world-map.js"></script>
+    <script src="../src/jquery.interactive-world-map-country-popup.js"></script>
+    <script src="../src/jquery.interactive-world-map-story-popup.js"></script>
+    <script src="../src/jquery.interactive-world-map.js"></script>
 
     <!-- flags -->
     <link rel="stylesheet" href="docs.css">
@@ -40,9 +41,25 @@
                 "colors": {
                     "hover" : "orange",
                     "highlighted": "yellow"
-                }
+                },
+                "type" : "countries"
             };
-            $('#world-map').interactiveWorldMap(options)
+            var stories = {
+                "countries": {
+                    "AT":
+                    {"name": "Austria",   "stories":  [ { title: 'FPO loosing everything', url: 'http://www.yfu.at', type: 'interview'} ]}
+                    ,
+                    "AR":
+                    {"name": "Argentina", "stories":  [ { title: 'Un europeo garchand un argentino', url: 'http://www.yfu.at', type: 'photo_album'}, { title: 'Rubia descociendola literal en ctess', url: 'http://www.yfu.at', type: 'interview'} ]}
+                    ,
+                    "BR":
+                    {"name": "Brasil",    "stories":  [ { title: 'Germans in Brazil', url: 'http://www.yfu.at', type: 'narrative'} ]},
+                    "US":
+                    {"name": "Schuleraustausch in USA",       "stories":  [ { title: 'Donal Trump loosing money', url: 'http://www.yfu.at', type: 'photo_album'} ]}
+                },
+                "type" : "stories"
+            };
+            $('#world-map').interactiveWorldMap(stories)
         });
     </script>
 
