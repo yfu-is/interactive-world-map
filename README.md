@@ -6,7 +6,7 @@ Dependency: [FlagIconCss](https://github.com/lipis/flag-icon-css)
 Core :  Jquery.interactive-world-map.js
 Popup:  Jquery.popup-interactive-world-map.js
 
-The vector map shows a modal with the information of the country clicked. 
+The vector map shows a modal with the information of the clicked country. 
 
 Actual main property:  **countries**
 
