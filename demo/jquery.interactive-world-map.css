@@ -17,6 +17,9 @@
         width: 100%;
     }
 }
+.jvectormap-region {
+    stroke: none ! important;
+}
 .main-modal {
     max-height: 280px;
     border: solid 4px #cccccc;

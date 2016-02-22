@@ -40,7 +40,7 @@
                     "margins" : {"top": 110, "left": 5}
                 },
                 "colors": {
-                    "hover" : "orange",
+                    "hover" : "red",
                     "highlighted": "yellow"
                 },
                 "type" : "countries"
@@ -58,7 +58,13 @@
                     "US":
                     {"name": "Schuleraustausch in USA",       "stories":  [ { title: 'Donal Trump loosing money', url: 'http://www.yfu.at', type: 'photo_album'} ]}
                 },
-                "type" : "stories"
+                "type" : "stories",
+                "svg": {
+                    "pattern": {
+                        "size": 1
+                        //"size": 5 #Circles
+                    }
+                }
             };
             $('#world-map').interactiveWorldMap(stories)
         });
